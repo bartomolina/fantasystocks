@@ -1,26 +1,17 @@
 {
-  "name": "fantasystocks",
-  "version": "0.1.0",
+  "name": "lookup-server",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
-    "prettier": "^1.9.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "express": "4.13.3"
   },
   "scripts": {
-    "precommit": "lint-staged",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "node start-client.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.1.0"
   }
 }
