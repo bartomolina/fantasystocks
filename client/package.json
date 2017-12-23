@@ -2,6 +2,7 @@
   "name": "fantasystocks",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
