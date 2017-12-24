@@ -1,4 +1,8 @@
+'use strict'
+
 const express = require('express')
+const models = require('./server/models')
+
 const app = express()
 
 app.set('port', process.env.PORT || 3001)
@@ -12,6 +16,8 @@ app.get('/', (req, res) => {
   res.send('OK')
 })
 
-app.listen(app.get('port'), () => {
-  console.log(`Find the server at: http://localhost:${app.get('port')}/`) // eslint-disable-line no-console
+models.sequelize.sync({ force: true }).then(function() {
+  app.listen(app.get('port'), () => {
+    console.log(`Find the server at: http://localhost:${app.get('port')}/`) // eslint-disable-line no-console
+  })
 })
