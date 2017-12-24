@@ -11,7 +11,11 @@
     "sequelize": "^4.28.6"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
+    "server/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --no-semi --write",
+      "git add"
+    ],
+    "client/src/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --no-semi --write",
       "git add"
     ]
