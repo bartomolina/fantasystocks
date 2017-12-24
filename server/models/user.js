@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-  const Player = sequelize.define('Player', {
+  const User = sequelize.define('User', {
     name: DataTypes.STRING,
     balance: DataTypes.FLOAT,
     googleId: DataTypes.STRING,
@@ -9,5 +9,5 @@ module.exports = (sequelize, DataTypes) => {
     avatar: DataTypes.STRING
   })
 
-  return Player
+  return User
 }
