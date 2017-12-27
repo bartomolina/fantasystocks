@@ -11,7 +11,10 @@ class Login extends Component {
           <h3>Welcome to FantasyStocks</h3>
           <p>Where fantasy league meets the stock market</p>
           <p>Join us!</p>
-          <a className="btn btn-block btn-social btn-google">
+          <a
+            href="http://localhost:3001/api/auth/google"
+            className="btn btn-block btn-social btn-google"
+          >
             <span className="fa fa-google" /> Sign in with Google
           </a>
           <a className="btn btn-block btn-social btn-facebook">
