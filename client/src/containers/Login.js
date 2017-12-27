@@ -43,7 +43,7 @@ class Login extends Component {
             >
               Login
             </button>
-            <a href="#">
+            <a href="/">
               <small>Forgot password?</small>
             </a>
             <p className="text-muted text-center">
