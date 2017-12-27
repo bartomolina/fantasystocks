@@ -22,7 +22,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
 
-app.get('/', (req, res) => {
+app.use('/api', require('./server/api'))
+
+app.get('/', (req, res, next) => {
   res.send('OK')
 })
 
