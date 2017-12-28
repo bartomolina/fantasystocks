@@ -2,8 +2,13 @@
   "name": "fantasystocks",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:3001/"
+    }
+  },
   "dependencies": {
+    "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
     "bootstrap-social": "^5.1.1",
     "font-awesome": "^4.7.0",
@@ -12,7 +17,9 @@
     "prettier": "^1.9.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "lint-staged": {
     "*.{js,jsx,json,css}": [

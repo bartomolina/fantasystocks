@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 class Login extends Component {
+  componentDidMount() {
+    fetch('/api/auth/google')
+  }
+
   render() {
     return (
       <div className="middle-box text-center loginscreen animated fadeInDown">
@@ -12,7 +16,7 @@ class Login extends Component {
           <p>Where fantasy league meets the stock market</p>
           <p>Join us!</p>
           <a
-            href="http://localhost:3001/api/auth/google"
+            href="/api/auth/google"
             className="btn btn-block btn-social btn-google"
           >
             <span className="fa fa-google" /> Sign in with Google
