@@ -25,7 +25,10 @@ class Login extends Component {
           >
             <span className="fa fa-google" /> Sign in with Google
           </a>
-          <a className="btn btn-block btn-social btn-facebook">
+          <a
+            href="/api/auth/facebook"
+            className="btn btn-block btn-social btn-facebook"
+          >
             <span className="fa fa-facebook" /> Sign in with Facebook
           </a>
           <form className="m-t" action="index.html">
