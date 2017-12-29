@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { loginMap, loginDispatcher } from '../redux/mappers'
 
 class Login extends Component {
   componentDidMount() {
-    fetch('/api/auth/google')
+    if (!this.props.user.id) {
+      this.props.getUser()
+    }
   }
 
   render() {
@@ -12,7 +16,7 @@ class Login extends Component {
           <div>
             <h1 className="logo-name">FS</h1>
           </div>
-          <h3>Welcome to FantasyStocks</h3>
+          <h3>Welcome to FantasyStocks (User ID: {this.props.user.id})</h3>
           <p>Where fantasy league meets the stock market</p>
           <p>Join us!</p>
           <a
@@ -67,4 +71,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default connect(loginMap, loginDispatcher)(Login)
