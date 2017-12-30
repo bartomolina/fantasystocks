@@ -27,11 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
 
-  User.beforeCreate(function(user, options, callback) {
+  User.beforeCreate(function(user, options) {
     if (user.password) {
       hasSecurePassword(user, options, callback)
-    } else {
-      return callback(null, options)
     }
   })
 

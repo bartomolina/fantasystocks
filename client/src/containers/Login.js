@@ -17,8 +17,6 @@ class Login extends Component {
             <h1 className="logo-name">FS</h1>
           </div>
           <h3>Welcome to FantasyStocks (User ID: {this.props.user.id})</h3>
-          <p>Where fantasy league meets the stock market</p>
-          <p>Join us!</p>
           <a
             href="/api/auth/google"
             className="btn btn-block btn-social btn-google"
@@ -60,13 +58,12 @@ class Login extends Component {
             <p className="text-muted text-center">
               <small>Do not have an account?</small>
             </p>
-            <a className="btn btn-sm btn-white btn-block" href="register.html">
+            <a className="btn btn-sm btn-white btn-block" href="/register">
               Create an account
             </a>
           </form>
           <p className="m-t">
-            {' '}
-            <small>made by Annie, Qian, Barto &copy; 2018</small>{' '}
+            <small>made by Annie, Qian, Barto &copy; 2018</small>
           </p>
         </div>
       </div>
