@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginMap, loginDispatcher } from '../redux/mappers'
+import Ladda from 'ladda'
 
 class Login extends Component {
   constructor() {
     super()
     this.state = {
+      registering: false,
       username: '',
       email: '',
       password: '',
@@ -13,6 +15,11 @@ class Login extends Component {
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    this.laddaInstance = Ladda.create(this.registerBtn)
   }
 
   handleInputChange(event) {
@@ -25,8 +32,18 @@ class Login extends Component {
     })
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+
+    this.laddaInstance.start()
+
+    setTimeout(() => {
+      this.laddaInstance.stop()
+    }, 2000)
+  }
+
   render() {
-    const { handleInputChange } = this
+    const { handleInputChange, handleSubmit } = this
     const { username, email, password, confirmPassword } = this.state
 
     return (
@@ -37,7 +54,7 @@ class Login extends Component {
           </div>
           <h3>Register to FantasyStocks</h3>
           <p>Create account to see it in action</p>
-          <form className="m-t" action="login.html">
+          <form className="m-t" onSubmit={handleSubmit}>
             <div className="form-group">
               <input
                 name="username"
@@ -83,8 +100,12 @@ class Login extends Component {
               />
             </div>
             <button
+              ref={button => {
+                this.registerBtn = button
+              }}
               type="submit"
-              className="btn btn-primary block full-width m-b"
+              className="ladda-button btn btn-primary block full-width m-b"
+              data-style="slide-up"
             >
               Register
             </button>
@@ -96,8 +117,7 @@ class Login extends Component {
             </a>
           </form>
           <p className="m-t">
-            {' '}
-            <small>made by Annie, Qian, Barto &copy; 2018</small>{' '}
+            <small>made by Annie, Qian, Barto &copy; 2018</small>
           </p>
         </div>
       </div>

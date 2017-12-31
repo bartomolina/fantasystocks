@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const LOAD = 'auth/LOAD'
+const LOAD = 'user/LOAD'
 
 const initialState = {
   user: {}
@@ -9,17 +9,14 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      return action.user
+      return { ...state, user: action.user }
     default:
       return state
   }
 }
 
 export function loadUser(user) {
-  return {
-    type: LOAD,
-    user
-  }
+  return { type: LOAD, user }
 }
 
 export function getUser() {
