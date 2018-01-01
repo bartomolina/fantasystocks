@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 let RegisterForm = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, pristine, submitting } = props
 
   return (
     <form className="m-t" onSubmit={handleSubmit}>
@@ -48,6 +48,7 @@ let RegisterForm = props => {
       </div>
       <button
         ref={props.registerBtn}
+        disabled={pristine || submitting}
         type="submit"
         className="ladda-button btn btn-primary block full-width m-b"
         data-style="slide-up"

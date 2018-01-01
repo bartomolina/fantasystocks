@@ -9,7 +9,7 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      return { ...state, user: action.user }
+      return action.user
     default:
       return state
   }
