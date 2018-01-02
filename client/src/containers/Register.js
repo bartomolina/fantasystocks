@@ -7,10 +7,6 @@ import RegisterForm from '../components/RegisterForm'
 class Register extends Component {
   constructor() {
     super()
-    this.state = {
-      registering: false
-    }
-
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -20,9 +16,7 @@ class Register extends Component {
 
   handleSubmit(values) {
     console.log(values)
-
     this.laddaInstance.start()
-
     setTimeout(() => {
       this.laddaInstance.stop()
     }, 2000)

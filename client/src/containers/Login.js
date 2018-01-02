@@ -1,15 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginMap, loginDispatcher } from '../redux/mappers'
+import Ladda from 'ladda'
+import LoginForm from '../components/LoginForm'
 
 class Login extends Component {
+  constructor() {
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
   componentDidMount() {
-    if (!this.props.user.id) {
-      this.props.getUser()
+    const { user, getUser } = this.props
+
+    if (!user.id) {
+      getUser()
     }
+
+    this.laddaInstance = Ladda.create(this.loginBtn)
+  }
+
+  handleSubmit(values) {
+    const { history } = this.props
+
+    console.log(values)
+    this.laddaInstance.start()
+    setTimeout(() => {
+      this.laddaInstance.stop()
+    }, 2000)
+
+    history.push('/home')
   }
 
   render() {
+    const { handleSubmit } = this
+
     return (
       <div className="middle-box text-center loginscreen animated fadeInDown">
         <div>
@@ -29,39 +54,10 @@ class Login extends Component {
           >
             <span className="fa fa-facebook" /> Sign in with Facebook
           </a>
-          <form className="m-t" action="index.html">
-            <div className="form-group">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Username"
-                required=""
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                required=""
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary block full-width m-b"
-            >
-              Login
-            </button>
-            <a href="/">
-              <small>Forgot password?</small>
-            </a>
-            <p className="text-muted text-center">
-              <small>Do not have an account?</small>
-            </p>
-            <a className="btn btn-sm btn-white btn-block" href="/register">
-              Create an account
-            </a>
-          </form>
+          <LoginForm
+            onSubmit={handleSubmit}
+            loginBtn={el => (this.loginBtn = el)}
+          />
           <p className="m-t">
             <small>made by Annie, Qian, Barto &copy; 2018</small>
           </p>

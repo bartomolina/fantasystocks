@@ -13,7 +13,6 @@ let RegisterForm = props => {
           type="text"
           className="form-control"
           placeholder="Username"
-          required=""
         />
       </div>
       <div className="form-group">
@@ -23,7 +22,6 @@ let RegisterForm = props => {
           type="email"
           className="form-control"
           placeholder="Email"
-          required=""
         />
       </div>
       <div className="form-group">
@@ -33,7 +31,6 @@ let RegisterForm = props => {
           type="password"
           className="form-control"
           placeholder="Password"
-          required=""
         />
       </div>
       <div className="form-group">
@@ -43,7 +40,6 @@ let RegisterForm = props => {
           type="password"
           className="form-control"
           placeholder="Confirm password"
-          required=""
         />
       </div>
       <button
