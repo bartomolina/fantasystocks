@@ -2,6 +2,8 @@
 
 const router = require('express').Router()
 const passport = require('passport')
+const JwtStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const LocalStrategy = require('passport-local').Strategy
@@ -18,6 +20,18 @@ passport.deserializeUser(function(id, done) {
     })
     .catch(done)
 })
+
+var jwtOptions = {}
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
+jwtOptions.secretOrKey = process.env.SESSION_SECRET
+
+passport.use(
+  new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+    console.log('payload received', jwt_payload)
+    const user = { id: 1, name: 'bmm' }
+    next(null, user)
+  })
+)
 
 passport.use(
   new LocalStrategy(function(username, password, profile, done) {
