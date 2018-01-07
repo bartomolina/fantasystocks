@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const LocalStrategy = require('passport-local').Strategy
-const { User } = require('../models')
+const { User } = require('../db/models')
 
 passport.serializeUser(function(user, done) {
   done(null, user.id)

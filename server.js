@@ -7,8 +7,8 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const models = require('./server/models')
-const seed = require('./server/seed')
+const models = require('./server/db/models')
+const seed = require('./server/db/seed')
 
 const app = express()
 
