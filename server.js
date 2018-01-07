@@ -8,10 +8,17 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const models = require('./server/models')
+const seed = require('./server/seed')
 
 const app = express()
 
-app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }))
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+  })
+)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -28,8 +35,13 @@ app.get('/', (req, res, next) => {
   res.send('OK')
 })
 
-models.sequelize.sync({ force: true }).then(function() {
-  app.listen(app.get('port'), () => {
-    console.log(`Find the server at: http://localhost:${app.get('port')}/`) // eslint-disable-line no-console
+models.sequelize
+  .sync({ force: true })
+  .then(() => {
+    seed()
   })
-})
+  .then(() => {
+    app.listen(app.get('port'), () => {
+      console.log(`Find the server at: http://localhost:${app.get('port')}/`) // eslint-disable-line no-console
+    })
+  })

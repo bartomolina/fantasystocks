@@ -14,22 +14,25 @@ module.exports = (sequelize, DataTypes) => {
     password_confirmation: DataTypes.VIRTUAL
   })
 
-  var hasSecurePassword = function(user, options, callback) {
+  const hasSecurePassword = function(user, options) {
     if (user.password != user.password_confirmation) {
       throw new Error("Passwords doesn't match")
     }
-    bcrypt.hash(user.get('password'), 10, function(err, hash) {
-      if (err) {
-        return callback(err)
-      }
-      user.set('passowrd_digest', hash)
-      return callback(null, options)
+    return new Promise(function(resolve, reject) {
+      bcrypt.hash(user.get('password'), 10, function(err, hash) {
+        if (err) {
+          return reject(err)
+        }
+        return resolve(hash)
+      })
     })
   }
 
   User.beforeCreate(function(user, options) {
     if (user.password) {
-      hasSecurePassword(user, options, callback)
+      return hasSecurePassword(user, options).then(hash => {
+        user.set('password_digest', hash)
+      })
     }
   })
 
