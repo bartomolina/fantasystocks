@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginMap, loginDispatcher } from '../redux/mappers'
 import Ladda from 'ladda'
+import axios from 'axios'
 import LoginForm from '../components/LoginForm'
 
 class Login extends Component {
@@ -23,13 +24,14 @@ class Login extends Component {
   handleSubmit(values) {
     const { history } = this.props
 
+    axios.post('/api/auth/login', values)
     console.log(values)
-    this.laddaInstance.start()
-    setTimeout(() => {
-      this.laddaInstance.stop()
-    }, 2000)
+    // this.laddaInstance.start()
+    // setTimeout(() => {
+    //   this.laddaInstance.stop()
+    // }, 2000)
 
-    history.push('/home')
+    // history.push('/home')
   }
 
   render() {

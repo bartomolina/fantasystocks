@@ -9,6 +9,7 @@
     "express": "4.13.3",
     "express-session": "^1.15.6",
     "husky": "^0.14.3",
+    "jsonwebtoken": "^8.1.0",
     "lint-staged": "^6.0.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
@@ -43,7 +44,8 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server.js",
     "client": "node start-client.js",
-    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+    "dev":
+      "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"

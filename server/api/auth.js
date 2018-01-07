@@ -4,6 +4,7 @@ const router = require('express').Router()
 const passport = require('passport')
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
+const jwt = require('jsonwebtoken')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const LocalStrategy = require('passport-local').Strategy
@@ -26,10 +27,10 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
 jwtOptions.secretOrKey = process.env.SESSION_SECRET
 
 passport.use(
-  new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-    console.log('payload received', jwt_payload)
+  new JwtStrategy(jwtOptions, function(payload, done) {
+    console.log('payload received', payload)
     const user = { id: 1, name: 'bmm' }
-    next(null, user)
+    done(null, user)
   })
 )
 
@@ -113,6 +114,16 @@ router.get(
 
 router.get('/me', (req, res, next) => {
   res.send(req.user)
+})
+
+router.post('/login', (req, res, next) => {
+  console.log('logging in...')
+
+  const user = { id: 1, name: 'bmm' }
+  const payload = { id: user.id }
+  const token = jwt.sign(payload, jwtOptions.secretOrKey)
+
+  res.json({ message: 'ok', token })
 })
 
 router.get('/logout', (req, res, next) => {
